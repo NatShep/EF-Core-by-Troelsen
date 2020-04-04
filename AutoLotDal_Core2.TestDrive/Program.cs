@@ -1,6 +1,6 @@
-﻿using Sy
+﻿using System;
 
-namespace AutoLotDal_Core.TestDrive
+namespace AutoLotDal_Core2.TestDrive
 {
     class Program
     {
