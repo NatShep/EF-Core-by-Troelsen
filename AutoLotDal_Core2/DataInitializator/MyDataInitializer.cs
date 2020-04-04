@@ -67,7 +67,7 @@ namespace AutoLotDal_Core2.DataInitializator
                 
                 context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT dbo.{TableName} ON;");
                 context.SaveChanges();
-                context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT dbo.CreditRisks ON;");
+                context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT dbo.CreditRisks OFF;");
                 
             }
             finally

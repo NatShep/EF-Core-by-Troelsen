@@ -15,6 +15,11 @@ namespace AutoLotDal_Core2.Repos
             
         }
 
+        public InventoryRepo() : this(new AutoLotContext())
+        {
+            
+        }
+
 
         public List<Inventory> GetPinkCars() => GetSome(x => x.Color == "Pink");
 

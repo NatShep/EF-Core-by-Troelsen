@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AutoLotDal_Core.Models\AutoLotDal_Core.Models.csproj" />
       <ProjectReference Include="..\AutoLotDal_Core2\AutoLotDal_Core2.csproj" />
     </ItemGroup>
 
