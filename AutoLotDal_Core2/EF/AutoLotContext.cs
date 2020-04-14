@@ -7,6 +7,7 @@ namespace AutoLotDal_Core.EF
 {
     public class AutoLotContext:DbContext
     {
+        
         public AutoLotContext(DbContextOptions options) : base(options)
         {
             
@@ -21,8 +22,8 @@ namespace AutoLotDal_Core.EF
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connctionString = "Server=desktop-l8k07nf\\sqlexpress;Initial Catalog=AutoLotCore;User Id=sa;Password=123;MultipleActiveResultSets=True;App=EntityFramework";
-                optionsBuilder.UseSqlServer(connctionString, options => options.EnableRetryOnFailure());
+                var connectionString = "Server=desktop-l8k07nf\\sqlexpress;Initial Catalog=AutoLotCore;User Id=sa;Password=123;MultipleActiveResultSets=True;App=EntityFramework";
+                optionsBuilder.UseSqlServer(connectionString, options => options.EnableRetryOnFailure());
             }
         }
         
@@ -44,9 +45,9 @@ namespace AutoLotDal_Core.EF
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
 
-     //   public string GetTableName(Type type)
+   //     public string GetTableName(Type type)
      //   {
-      //      return Model.FindEntityType(type).SqlServer().TableName;
-      //  }
+       //     return Model.FindEntityType(type).SqlServer().TableName;
+       // }
     }
 }

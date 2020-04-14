@@ -13,8 +13,8 @@ namespace AutoLotDal_Core2.TestDrive
             Console.WriteLine("EF Core 2");
             using (var context = new AutoLotContext())
             {
-                MyDataInitializer.RecreateDatabase(context);
-                MyDataInitializer.InitializeData(context);
+               MyDataInitializer.RecreateDatabase(context);
+               MyDataInitializer.InitializeData(context);
                 foreach (var car in context.Cars)
                 {
                     Console.WriteLine(car);

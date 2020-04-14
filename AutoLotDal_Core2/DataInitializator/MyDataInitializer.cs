@@ -14,11 +14,11 @@ namespace AutoLotDal_Core2.DataInitializator
         {
             var customers = new List<Customer>
             {
-                new Customer {FirstName = "Dave", LastName = "Brener"},
-                new Customer {FirstName = "Matt", LastName = "Walton"},
-                new Customer {FirstName = "Steve", LastName = "Hagen"},
-                new Customer {FirstName = "Pat", LastName = "Walton"},
-                new Customer {FirstName = "Bad", LastName = "Customer"}
+                new Customer { FirstName = "Dave", LastName = "Brener"},
+                new Customer { FirstName = "Matt", LastName = "Walton"},
+                new Customer { FirstName = "Steve", LastName = "Hagen"},
+                new Customer { FirstName = "Pat", LastName = "Walton"},
+                new Customer { FirstName = "Bad", LastName = "Customer"}
             };
             customers.ForEach(x => context.Customers.Add(x));
             context.SaveChanges();
@@ -53,7 +53,8 @@ namespace AutoLotDal_Core2.DataInitializator
             context.Database.OpenConnection();
             try
             {
-                // We need dbcontext to access the models
+        //        var tName = context.GetTableName(typeof(CreditRisk));
+               // We need dbcontext to access the models
                 var models = context.Model;
 
                 // Get all the entity types information
@@ -63,11 +64,14 @@ namespace AutoLotDal_Core2.DataInitializator
                 var entityTypeOfT = entityTypes.First(t => t.ClrType == typeof(CreditRisk));
 
                 var tableNameAnnotation = entityTypeOfT.GetAnnotation("Relational:TableName");
-                var TableName = tableNameAnnotation.Value.ToString();
-                
-                context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT dbo.{TableName} ON;");
+                var tableName = tableNameAnnotation.Value.ToString();
+               
+                var command = $"SET IDENTITY_INSERT dbo.{tableName} ON;";
+               
+                context.Database.ExecuteSqlCommand(command);
                 context.SaveChanges();
-                context.Database.ExecuteSqlRaw($"SET IDENTITY_INSERT dbo.CreditRisks OFF;");
+                command = $"SET IDENTITY_INSERT dbo.CreditRisks OFF;";
+                context.Database.ExecuteSqlCommand(command);
                 
             }
             finally
@@ -94,7 +98,8 @@ namespace AutoLotDal_Core2.DataInitializator
 
         public static void ExecuteDeleteSql(AutoLotContext context, string tableName)
         {
-            context.Database.ExecuteSqlRaw($"Delete from dbo.{tableName}");
+            string command = $"Delete from dbo.{tableName}";
+            context.Database.ExecuteSqlCommand(command);
         }
     }
 }
