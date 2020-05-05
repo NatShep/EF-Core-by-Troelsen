@@ -10,7 +10,7 @@ namespace AutoLotDal_Core.Models
         [NotMapped] public string FullName => $"{Make}+({Color})";
         public override string ToString()
         {
-            return $"{this.PetName ?? "**No Name"} is a {this.Color} {this.Make} with ID {this.Id}.";
+            return $"{this.PetName ?? "**No Name"} is a {this.Color} {this.Make} with ID {this.Id}";
         }
     }
 }

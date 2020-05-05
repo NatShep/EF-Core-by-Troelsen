@@ -8,7 +8,7 @@ namespace AutoLotDal_Core.Models
         public int CustId { get; set; }
         public int CarId { get; set; }
         [ForeignKey(nameof(CustId))]
-        public virtual Customer Customer { get; set; }
+        public Customer Customer { get; set; }
         [ForeignKey(nameof(CarId))]
         public Inventory Car { get; set; }
         

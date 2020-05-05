@@ -7,7 +7,7 @@ namespace AutoLotDal_Core.Models
 {
     [Table("Customers")]
 
-    public class Customer: EntityBase
+    public partial class Customer: EntityBase
     {
         [StringLength(50)]
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace AutoLotDal_Core.Models
 
         [NotMapped] public string FullName => FirstName + " " + LastName;
         
-        public ICollection<Order> Orders { get; set; }=new List<Order>();
+        public List<Order> Orders { get; set; }=new List<Order>();
         
     }
 }

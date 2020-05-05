@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using AutoLotDal_Core.EF;
 using AutoLotDal_Core.Models;
 using AutoLotDal_Core2.DataInitializator;
 using AutoLotDal_Core2.Repos;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoLotDal_Core2.TestDrive
 {
@@ -31,6 +33,12 @@ namespace AutoLotDal_Core2.TestDrive
             }
             Console.ReadLine();
 
+            using (var context = new AutoLotContext())
+            {
+                var car = context.Cars.Include(x=>x.Orders).ThenInclude(x=>x.Customer).FirstOrDefault(x=>x.Id==4);
+                Console.WriteLine($"The customer of {car} is:");
+                Console.WriteLine(car.Orders.FirstOrDefault().Customer);
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace AutoLotDal_Core.EF
         public DbSet<CreditRisk> CreditRisks { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Inventory> Cars { get; set; }
-        public DbSet<Order> Orders { get; set; }
+      //  public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,7 +42,15 @@ namespace AutoLotDal_Core.EF
             modelBuilder.Entity<Order>()
                 .HasOne(e => e.Car)
                 .WithMany(e => e.Orders)
+                .HasForeignKey(pt => pt.CarId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            
+            modelBuilder.Entity<Order>()
+                .HasOne(e => e.Customer)
+                .WithMany(e => e.Orders)
+                .HasForeignKey(pt => pt.CustId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            
         }
 
    //     public string GetTableName(Type type)
